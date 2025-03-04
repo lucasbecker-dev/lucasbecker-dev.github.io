@@ -3,55 +3,137 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Github, Linkedin, Mail, ExternalLink, Menu, X } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useState } from "react"
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
+import Script from "next/script"
+
+// Skill component for highlighting technologies
+const Skill = ({ children }: { children: React.ReactNode }) => (
+  <strong className="text-primary">{children}</strong>
+);
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const handleSmoothScroll = useSmoothScroll()
 
   return (
     <div className="min-h-screen bg-background">
+      <Script
+        id="schema-person"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Lucas Becker",
+            "url": "https://lucasbecker-dev.github.io",
+            "jobTitle": "Software Engineer",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "We Make Good Software"
+            },
+            "description": "Software Engineer specializing in Java, Spring Boot, React, TypeScript, and full-stack web development.",
+            "skills": "Java, Spring Boot, React, TypeScript, Hibernate, Maven, MySQL, Tailwind CSS, Next.js",
+            "sameAs": [
+              "https://github.com/lucasbecker-dev",
+              "https://www.linkedin.com/in/lucasbecker-dev/"
+            ]
+          })
+        }}
+      />
+      <Script
+        id="schema-portfolio"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+            "headline": "Lucas Becker - Software Engineer Portfolio",
+            "about": {
+              "@type": "Person",
+              "name": "Lucas Becker"
+            },
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": [
+                {
+                  "@type": "SoftwareSourceCode",
+                  "name": "Project 1",
+                  "programmingLanguage": ["React", "Node.js", "MongoDB"],
+                  "codeRepository": "https://github.com/yourusername/project1",
+                  "position": 1
+                },
+                {
+                  "@type": "SoftwareSourceCode",
+                  "name": "Project 2",
+                  "programmingLanguage": ["TypeScript", "Next.js", "Prisma"],
+                  "codeRepository": "https://github.com/yourusername/project2",
+                  "position": 2
+                },
+                {
+                  "@type": "SoftwareSourceCode",
+                  "name": "Project 3",
+                  "programmingLanguage": ["Python", "Django", "PostgreSQL"],
+                  "codeRepository": "https://github.com/yourusername/project3",
+                  "position": 3
+                }
+              ]
+            }
+          })
+        }}
+      />
       <header className="sticky top-0 z-10 backdrop-blur-sm bg-background/90 border-b">
         <div className="container flex h-16 items-center justify-between">
           <div className="font-bold text-xl">
-            <Link href="/" className="text-primary hover:text-primary/80 transition-colors">
-              YourName
+            <Link href="/" className="text-orange-600 hover:text-orange-700 transition-colors text-shadow">
+              Lucas Becker
             </Link>
           </div>
           <nav
-            className={`${
-              mobileMenuOpen ? "flex" : "hidden"
-            } md:flex absolute md:static inset-x-0 top-16 p-4 md:p-0 bg-background md:bg-transparent border-b md:border-0 flex-col md:flex-row gap-6 md:items-center`}
+            className={`${mobileMenuOpen ? "flex" : "hidden"
+              } md:flex absolute md:static inset-x-0 top-16 p-4 md:p-0 bg-background md:bg-transparent border-b md:border-0 flex-col md:flex-row gap-6 md:items-center`}
           >
             <Link
               href="#about"
               className="text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                handleSmoothScroll(e);
+                setMobileMenuOpen(false);
+              }}
             >
               About
             </Link>
             <Link
               href="#projects"
               className="text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                handleSmoothScroll(e);
+                setMobileMenuOpen(false);
+              }}
             >
               Projects
             </Link>
             <Link
               href="#skills"
               className="text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                handleSmoothScroll(e);
+                setMobileMenuOpen(false);
+              }}
             >
               Skills
             </Link>
             <Link
               href="#contact"
               className="text-foreground hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                handleSmoothScroll(e);
+                setMobileMenuOpen(false);
+              }}
             >
               Contact
             </Link>
@@ -59,13 +141,13 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <div className="hidden md:flex gap-2">
-              <Link href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+              <Link href="https://github.com/lucasbecker-dev" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" size="icon" className="text-foreground hover:text-primary hover:bg-primary/10">
                   <Github className="h-5 w-5" />
                   <span className="sr-only">GitHub</span>
                 </Button>
               </Link>
-              <Link href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.linkedin.com/in/lucasbecker-dev/" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" size="icon" className="text-foreground hover:text-primary hover:bg-primary/10">
                   <Linkedin className="h-5 w-5" />
                   <span className="sr-only">LinkedIn</span>
@@ -90,17 +172,17 @@ export default function Home() {
         <section className="py-12 md:py-24 flex flex-col md:flex-row items-center gap-8 md:gap-16">
           <div className="flex-1 space-y-4">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              Hi, I'm <span className="text-primary">YourName</span>
+              Hi, I'm <span className="text-orange-600 text-shadow">Lucas Becker</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Software Engineer specializing in building exceptional digital experiences.
+              Software Engineer specializing in building exceptional digital experiences with <Skill>Java</Skill>, <Skill>Spring Boot</Skill>, <Skill>Maven</Skill>, <Skill>Hibernate</Skill>, <Skill>React</Skill>, <Skill>TypeScript</Skill>, <Skill>Tailwind CSS</Skill>, and <Skill>MySQL</Skill>.
             </p>
             <div className="flex gap-4 pt-4">
               <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link href="#contact">Get in touch</Link>
+                <Link href="#contact" onClick={handleSmoothScroll}>Get in touch</Link>
               </Button>
               <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10">
-                <Link href="#projects">View my work</Link>
+                <Link href="#projects" onClick={handleSmoothScroll}>View my work</Link>
               </Button>
             </div>
           </div>
@@ -120,34 +202,65 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <p className="text-lg">
-                I'm a passionate software engineer with a focus on creating clean, efficient, and user-friendly
-                applications. With a strong foundation in both frontend and backend technologies, I enjoy tackling
-                complex problems and turning ideas into reality.
+                I'm a passionate software engineer specializing in <Skill>Java</Skill>, <Skill>Spring Boot</Skill>, <Skill>Hibernate</Skill>, <Skill>Maven</Skill>, <Skill>MySQL</Skill>, <Skill>React</Skill>, <Skill>Tailwind CSS</Skill>, and <Skill>TypeScript</Skill>. I focus on creating clean, efficient, and user-friendly applications.
               </p>
               <p className="text-lg">
-                My journey in software development began with [your background story]. Since then, I've worked on a
-                variety of projects ranging from [types of projects] to [other types of projects].
+                My journey in software development began with building simple websites as a teenager, which sparked my curiosity about how technology works. Since then, I've worked on a
+                variety of projects ranging from web applications to developer tools.
               </p>
-              <p className="text-lg">When I'm not coding, you can find me [your hobbies or interests].</p>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Education</h3>
+              <p className="text-lg">When I'm not coding, you can find me reading, exercising, and spending time with my family.</p>
+
+              <h3 className="text-xl font-semibold mt-6">Education</h3>
               <div className="space-y-2">
                 <div>
                   <div className="font-medium">Bachelor of Science in Computer Science</div>
-                  <div className="text-muted-foreground">University Name, 20XX - 20XX</div>
+                  <div className="text-muted-foreground">Western Governors University, December 2025</div>
                 </div>
               </div>
 
-              <h3 className="text-xl font-semibold mt-6">Experience</h3>
+              <h3 className="text-xl font-semibold mt-6">Relevant Experience</h3>
               <div className="space-y-4">
                 <div>
-                  <div className="font-medium">Software Engineer</div>
-                  <div className="text-muted-foreground">Company Name, 20XX - Present</div>
+                  <div className="font-medium">Full Stack Developer & Project Manager</div>
+                  <div className="text-muted-foreground">We Make Good Software, July 2024 – Present</div>
                   <ul className="list-disc list-inside text-muted-foreground mt-2">
-                    <li>Developed and maintained [specific projects or technologies]</li>
-                    <li>Collaborated with cross-functional teams to deliver [specific outcomes]</li>
-                    <li>Improved [specific metrics] by implementing [specific solutions]</li>
+                    <li>Developed and maintained a full-stack web application using <Skill>Java</Skill>, <Skill>Spring Boot</Skill>, <Skill>TypeScript</Skill>, <Skill>React</Skill>, <Skill>MySQL</Skill>, and <Skill>Material UI</Skill></li>
+                    <li>Deployed applications on <Skill>Railway</Skill> and managed the project using <Skill>Jira</Skill></li>
+                    <li>Conducted code reviews, provided technical guidance, and contributed to architectural and design decisions</li>
+                    <li>Led team meetings, coordinated client communications, and oversaw project planning</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold">Additional Experience</h3>
+              <div className="space-y-4">
+                <div>
+                  <div className="font-medium">Java Coding Instructor</div>
+                  <div className="text-muted-foreground">Coders Campus, May 2024 – Present (Contract, Remote)</div>
+                  <ul className="list-disc list-inside text-muted-foreground mt-2">
+                    <li>Teaching <Skill>Java</Skill>, <Skill>Spring Boot</Skill>, <Skill>Hibernate</Skill>, <Skill>Maven</Skill>, <Skill>MySQL</Skill>, <Skill>Thymeleaf</Skill>, <Skill>HTML</Skill>, and <Skill>CSS</Skill> coding skills to full stack Java bootcamp students</li>
+                    <li>Conducting regular class sessions, answering questions, and providing 1-on-1 tutoring</li>
+                    <li>Helping students develop practical programming skills for real-world applications</li>
+                  </ul>
+                </div>
+                <div>
+                  <div className="font-medium">Software Developer</div>
+                  <div className="text-muted-foreground">Self Employed, September 2021 – Present</div>
+                  <ul className="list-disc list-inside text-muted-foreground mt-2">
+                    <li>Delivered custom full-stack web solutions as a freelance Software Engineer</li>
+                    <li>Adapted to diverse client requirements by leveraging both front-end and back-end development skills</li>
+                    <li>Utilized technologies such as <Skill>Java</Skill>, <Skill>Spring</Skill>, and <Skill>React</Skill> to build scalable applications</li>
+                  </ul>
+                </div>
+                <div>
+                  <div className="font-medium">Full Stack Engineer</div>
+                  <div className="text-muted-foreground">Start Small Think Big, January 2022 – August 2022</div>
+                  <ul className="list-disc list-inside text-muted-foreground mt-2">
+                    <li>Contributed as a contract developer within an agile team of four engineers</li>
+                    <li>Enhanced testing coverage and improved overall application performance</li>
+                    <li>Built and integrated various components while proactively identifying and resolving bugs</li>
+                    <li>Utilized a modern tech stack including <Skill>Next.js</Skill>, <Skill>React</Skill>, <Skill>Material UI</Skill>, <Skill>Salesforce</Skill>, and <Skill>Jira</Skill></li>
                   </ul>
                 </div>
               </div>
@@ -320,9 +433,11 @@ export default function Home() {
                   <Badge>TypeScript</Badge>
                   <Badge>React</Badge>
                   <Badge>Next.js</Badge>
+                  <Badge>Material UI</Badge>
+                  <Badge>Tailwind CSS</Badge>
                   <Badge>HTML</Badge>
                   <Badge>CSS</Badge>
-                  <Badge>Tailwind CSS</Badge>
+                  <Badge>Thymeleaf</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -330,12 +445,12 @@ export default function Home() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-4">Backend</h3>
                 <div className="flex flex-wrap gap-2">
-                  <Badge>Node.js</Badge>
-                  <Badge>Express</Badge>
-                  <Badge>Python</Badge>
-                  <Badge>Django</Badge>
                   <Badge>Java</Badge>
                   <Badge>Spring Boot</Badge>
+                  <Badge>Maven</Badge>
+                  <Badge>Hibernate</Badge>
+                  <Badge>Node.js</Badge>
+                  <Badge>Express</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -343,11 +458,10 @@ export default function Home() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-4">Database</h3>
                 <div className="flex flex-wrap gap-2">
+                  <Badge>MySQL</Badge>
+                  <Badge>Hibernate</Badge>
                   <Badge>MongoDB</Badge>
                   <Badge>PostgreSQL</Badge>
-                  <Badge>MySQL</Badge>
-                  <Badge>Redis</Badge>
-                  <Badge>Firebase</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -358,8 +472,7 @@ export default function Home() {
                   <Badge>Git</Badge>
                   <Badge>GitHub Actions</Badge>
                   <Badge>Docker</Badge>
-                  <Badge>Kubernetes</Badge>
-                  <Badge>AWS</Badge>
+                  <Badge>Railway</Badge>
                   <Badge>Vercel</Badge>
                 </div>
               </CardContent>
@@ -369,9 +482,8 @@ export default function Home() {
                 <h3 className="text-xl font-bold mb-4">Testing</h3>
                 <div className="flex flex-wrap gap-2">
                   <Badge>Jest</Badge>
-                  <Badge>React Testing Library</Badge>
-                  <Badge>Cypress</Badge>
-                  <Badge>Selenium</Badge>
+                  <Badge>JUnit</Badge>
+                  <Badge>ngrok</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -382,8 +494,11 @@ export default function Home() {
                   <Badge>Agile</Badge>
                   <Badge>Scrum</Badge>
                   <Badge>RESTful APIs</Badge>
-                  <Badge>GraphQL</Badge>
                   <Badge>UI/UX Design</Badge>
+                  <Badge>Jira</Badge>
+                  <Badge>Salesforce</Badge>
+                  <Badge>Figma</Badge>
+                  <Badge>Project Management</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -404,29 +519,29 @@ export default function Home() {
               </p>
               <div className="flex flex-col gap-4 mt-6">
                 <Link
-                  href="mailto:your.email@example.com"
+                  href="mailto:lucasbecker.dev@gmail.com"
                   className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
                 >
                   <Mail className="h-5 w-5" />
-                  your.email@example.com
+                  lucasbecker.dev@gmail.com
                 </Link>
                 <Link
-                  href="https://github.com/yourusername"
+                  href="https://github.com/lucasbecker-dev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
                 >
                   <Github className="h-5 w-5" />
-                  github.com/yourusername
+                  github.com/lucasbecker-dev
                 </Link>
                 <Link
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://www.linkedin.com/in/lucasbecker-dev/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
                 >
                   <Linkedin className="h-5 w-5" />
-                  linkedin.com/in/yourusername
+                  linkedin.com/in/lucasbecker-dev
                 </Link>
               </div>
             </div>
@@ -464,7 +579,7 @@ export default function Home() {
                       placeholder="Your message"
                     />
                   </div>
-                  <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90">
                     Send Message
                   </Button>
                 </form>
@@ -477,22 +592,22 @@ export default function Home() {
       <footer className="border-t py-6 md:py-8 bg-muted/50">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} YourName. All rights reserved.
+            Copyright © {new Date().getFullYear()} Lucas Becker. All rights reserved.
           </div>
           <div className="flex gap-4">
-            <Link href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+            <Link href="https://github.com/lucasbecker-dev" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" className="text-foreground hover:text-primary hover:bg-primary/10">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Button>
             </Link>
-            <Link href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+            <Link href="https://www.linkedin.com/in/lucasbecker-dev/" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="icon" className="text-foreground hover:text-primary hover:bg-primary/10">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Button>
             </Link>
-            <Link href="mailto:your.email@example.com">
+            <Link href="mailto:lucasbecker.dev@gmail.com">
               <Button variant="ghost" size="icon" className="text-foreground hover:text-primary hover:bg-primary/10">
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
@@ -501,7 +616,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </div>
+    </div >
   )
 }
 
