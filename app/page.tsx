@@ -10,15 +10,85 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { useState } from "react"
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
 import Script from "next/script"
+import { z } from "zod"
+import { toast } from "sonner"
 
 // Skill component for highlighting technologies
 const Skill = ({ children }: { children: React.ReactNode }) => (
   <strong className="text-primary">{children}</strong>
 );
 
+// Contact form schema for validation
+const contactFormSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters" })
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
+
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const handleSmoothScroll = useSmoothScroll()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrors({});
+
+    // Store a reference to the form element
+    const form = e.currentTarget;
+
+    // Get form data
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      message: formData.get('message') as string
+    };
+
+    // Validate form data
+    const result = contactFormSchema.safeParse(data);
+
+    if (!result.success) {
+      // Format and display validation errors
+      const formattedErrors: { [key: string]: string } = {};
+      result.error.issues.forEach(issue => {
+        formattedErrors[issue.path[0] as string] = issue.message;
+      });
+      setErrors(formattedErrors);
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Send the form data to your API route
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.error || 'Failed to send message');
+      }
+
+      // Reset the form using the stored reference
+      form.reset();
+      toast.success('Message sent successfully! I will get back to you soon.');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error('Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -188,7 +258,7 @@ export default function Home() {
           </div>
           <div className="flex-1 flex justify-center md:justify-end">
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20">
-              <Image src="/placeholder.svg?height=320&width=320" alt="Profile" fill className="object-cover" priority />
+              <Image src="pfp2.png?height=320&width=320" alt="Profile" fill className="object-cover" priority />
             </div>
           </div>
         </section>
@@ -547,16 +617,20 @@ export default function Home() {
             </div>
             <Card className="hover:shadow-md hover:shadow-primary/10 transition-shadow">
               <CardContent className="p-6">
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div className="grid gap-2">
                     <label htmlFor="name" className="text-sm font-medium">
                       Name
                     </label>
                     <input
                       id="name"
+                      name="name"
                       className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Your name"
                     />
+                    {errors.name && (
+                      <p className="text-sm text-red-500 mt-1">{errors.name}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <label htmlFor="email" className="text-sm font-medium">
@@ -564,10 +638,14 @@ export default function Home() {
                     </label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
                       className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Your email"
                     />
+                    {errors.email && (
+                      <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <label htmlFor="message" className="text-sm font-medium">
@@ -575,12 +653,16 @@ export default function Home() {
                     </label>
                     <textarea
                       id="message"
+                      name="message"
                       className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Your message"
                     />
+                    {errors.message && (
+                      <p className="text-sm text-red-500 mt-1">{errors.message}</p>
+                    )}
                   </div>
-                  <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90">
-                    Send Message
+                  <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/90" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
               </CardContent>
