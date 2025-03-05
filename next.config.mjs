@@ -9,7 +9,7 @@ try {
 const nextConfig = {
   output: "export",
   reactStrictMode: true,
-  basePath: "/lucasbecker-dev",
+  basePath: "",
   eslint: {
     ignoreDuringBuilds: true,
   },
