@@ -12,6 +12,8 @@ import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
 import Script from "next/script"
 import { z } from "zod"
 import { toast } from "sonner"
+import emailjs from '@emailjs/browser'
+import { emailjsConfig } from "@/app/config/emailjs"
 
 // Skill component for highlighting technologies
 const Skill = ({ children }: { children: React.ReactNode }) => (
@@ -64,20 +66,17 @@ export default function Home() {
     }
 
     try {
-      // Send the form data to your API route
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      // Send the form data using EmailJS
+      await emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
         },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-
-      if (!response.ok) {
-        throw new Error(responseData.error || 'Failed to send message');
-      }
+        emailjsConfig.publicKey
+      );
 
       // Reset the form using the stored reference
       form.reset();

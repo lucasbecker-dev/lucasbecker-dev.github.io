@@ -1,40 +1,95 @@
-# Personal Portfolio Website
+# Lucas Becker - Portfolio Website
 
-A modern, responsive personal portfolio website built with cutting-edge web technologies.
+A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a Full Stack Developer specializing in Java and React.
 
-## 🚀 Tech Stack
+![Portfolio Screenshot](https://via.placeholder.com/800x400?text=Portfolio+Screenshot)
 
-- **Framework**: [Next.js 14](https://nextjs.org/) - The React framework for production with App Router
-- **Language**: [TypeScript](https://www.typescriptlang.org/) - Strongly typed JavaScript
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- **UI Components**: [shadcn/ui](https://ui.shadcn.com/) - Beautifully designed components built with Radix UI and Tailwind CSS
-- **Icons**: [Lucide React](https://lucide.dev/) - Beautiful & consistent icon set
-- **Theme**: [next-themes](https://github.com/pacocoursey/next-themes) - Dark mode with Next.js
-- **Form Handling**: [React Hook Form](https://react-hook-form.com/) with [Zod](https://zod.dev/) validation
-- **UI Primitives**: [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components for building high-quality design systems
-- **Animations**: [Tailwind CSS Animate](https://github.com/jamiebuilds/tailwindcss-animate) - Tailwind plugin for animations
+## Overview
 
-## ✨ Features
+This portfolio website serves as a comprehensive showcase of my professional journey, technical expertise, and project portfolio. It features a clean, responsive design with dark/light mode support and interactive elements to provide visitors with an engaging experience.
 
-- Responsive design that works on all devices
-- Dark/Light mode toggle
-- Modern UI with shadcn/ui components
-- Type-safe development with TypeScript
-- Fast performance with Next.js App Router
-- Clean and maintainable code structure
+## Key Features
 
-## 🛠️ Development
+- **Responsive Design**: Fully responsive layout that works seamlessly across desktop, tablet, and mobile devices
+- **Dark/Light Mode**: Theme toggle for user preference with system theme detection
+- **Interactive UI**: Smooth scrolling, hover effects, and animations for an engaging user experience
+- **Contact Form**: EmailJS-powered contact form with client-side validation
+- **SEO Optimized**: Structured metadata and semantic HTML for better search engine visibility
+- **Accessibility**: WCAG-compliant design elements for inclusive user experience
 
-```bash
-# Install dependencies
-npm install
+## Technology Stack
 
-# Run development server
-npm run dev
+### Frontend Framework & Libraries
 
-# Build for production
-npm run build
+- **Next.js 14**: React framework with static site generation capabilities
+- **React 18**: Component-based UI development with hooks
+- **TypeScript**: Type-safe JavaScript for improved developer experience
+- **Tailwind CSS**: Utility-first CSS framework for responsive design
 
-# Start production server
-npm start
-```
+### UI Components & Design
+
+- **Radix UI**: Unstyled, accessible UI components
+- **Lucide Icons**: Beautiful, consistent icon set
+- **Tailwind CSS Animations**: Smooth transitions and animations
+- **Class Variance Authority**: Managing component variants
+- **Tailwind Merge**: Smart class name merging
+
+### Form Handling & Validation
+
+- **Zod**: TypeScript-first schema validation
+- **EmailJS**: Client-side email sending for the contact form
+- **Sonner**: Toast notifications for form feedback
+
+### Performance & Optimization
+
+- **Next.js Image Optimization**: Automatic image optimization
+- **Static Site Generation**: Pre-rendered HTML for fast loading
+- **Code Splitting**: Automatic code splitting for optimal loading
+
+### Deployment & Hosting
+
+- **GitHub Pages**: Static site hosting
+- **GitHub Actions**: Automated deployment workflow
+
+## Project Structure
+
+The project follows a clean, modular architecture:
+
+- `/app`: Next.js app directory with page components and routing
+- `/components`: Reusable UI components
+- `/hooks`: Custom React hooks
+- `/lib`: Utility functions and shared code
+- `/public`: Static assets like images and fonts
+- `/config`: Configuration files for third-party services
+
+## UI Components
+
+The UI is built with a component-based approach using a combination of custom components and Radix UI primitives, styled with Tailwind CSS:
+
+- **Button**: Multi-variant button component
+- **Card**: Container component for content sections
+- **Badge**: Label component for skills and technologies
+- **ThemeToggle**: Dark/light mode switcher
+- **Form Components**: Validated input fields with error states
+
+## Contact Form
+
+The contact form uses:
+
+- **EmailJS**: For sending emails directly from the client-side
+- **Zod**: For form validation schema
+- **Sonner**: For toast notifications on submission success/failure
+
+## Accessibility & Performance
+
+The website is built with accessibility and performance in mind:
+
+- **Semantic HTML**: Proper heading hierarchy and landmark regions
+- **ARIA attributes**: Enhanced screen reader support
+- **Keyboard navigation**: Full keyboard accessibility
+- **Color contrast**: WCAG AA compliant color schemes
+- **Optimized assets**: Compressed images and efficient code splitting
+
+---
+
+© 2024 Lucas Becker. All rights reserved.
