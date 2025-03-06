@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Github, Linkedin, Mail, ExternalLink, Menu, X } from "lucide-react"
+import { Github, Linkedin, Mail, ExternalLink, Menu, X, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -344,31 +344,25 @@ export default function Home() {
             <div className="h-px bg-primary/30 flex-1 ml-4"></div>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Project 1 */}
+            {/* Project 1 - YEAH App */}
             <Card className="overflow-hidden group hover:shadow-md hover:shadow-primary/10 transition-shadow">
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Project 1"
+                  src="/yeah-app.png"
+                  alt="YEAH App - Engagement and Accountability Platform"
                   fill
                   className="object-cover transition-transform group-hover:scale-105"
                 />
               </div>
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold">Project Name</h3>
+                  <h3 className="text-xl font-bold">YEAH App</h3>
                   <div className="flex gap-2">
-                    <Link href="https://github.com/yourusername/project1" target="_blank" rel="noopener noreferrer">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-foreground hover:text-primary hover:bg-primary/10"
-                      >
-                        <Github className="h-4 w-4" />
-                        <span className="sr-only">GitHub</span>
-                      </Button>
-                    </Link>
-                    <Link href="https://project1-demo.com" target="_blank" rel="noopener noreferrer">
+                    <div className="flex items-center text-xs text-muted-foreground mr-2">
+                      <Lock className="h-3 w-3 mr-1" />
+                      Private Code
+                    </div>
+                    <Link href="https://dev.yeahapp.com/" target="_blank" rel="noopener noreferrer">
                       <Button
                         variant="ghost"
                         size="icon"
@@ -381,12 +375,14 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="text-muted-foreground mb-4">
-                  A brief description of the project, what it does, and the problems it solves.
+                  YEAH (Your Engagement and Accountability Helper) is a SaaS platform that helps course creators increase student engagement and completion rates through automated check-ins and sentiment analysis.
                 </p>
                 <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary">Java</Badge>
+                  <Badge variant="secondary">Spring Boot</Badge>
                   <Badge variant="secondary">React</Badge>
-                  <Badge variant="secondary">Node.js</Badge>
-                  <Badge variant="secondary">MongoDB</Badge>
+                  <Badge variant="secondary">TypeScript</Badge>
+                  <Badge variant="secondary">MySQL</Badge>
                 </div>
               </CardContent>
             </Card>
