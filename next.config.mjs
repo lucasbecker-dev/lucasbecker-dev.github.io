@@ -10,6 +10,8 @@ const nextConfig = {
   output: "export",
   reactStrictMode: true,
   basePath: "",
+  // Add trailing slash for better GitHub Pages compatibility
+  trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
   },

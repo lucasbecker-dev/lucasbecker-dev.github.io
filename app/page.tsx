@@ -434,21 +434,21 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* Project 3 */}
+            {/* Project 3 - Godot Smart Graphics Settings */}
             <Card className="overflow-hidden group hover:shadow-md hover:shadow-primary/10 transition-shadow">
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Project 3"
+                  src="/smart-graphics-settings.png"
+                  alt="Godot Smart Graphics Settings"
                   fill
                   className="object-cover transition-transform group-hover:scale-105"
                 />
               </div>
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold">Project Name</h3>
+                  <h3 className="text-xl font-bold">Smart Graphics Settings</h3>
                   <div className="flex gap-2">
-                    <Link href="https://github.com/yourusername/project3" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://github.com/lucasbecker-dev/godot-smart-graphics-settings" target="_blank" rel="noopener noreferrer">
                       <Button
                         variant="ghost"
                         size="icon"
@@ -458,25 +458,16 @@ export default function Home() {
                         <span className="sr-only">GitHub</span>
                       </Button>
                     </Link>
-                    <Link href="https://project3-demo.com" target="_blank" rel="noopener noreferrer">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-foreground hover:text-primary hover:bg-primary/10"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                        <span className="sr-only">Live Demo</span>
-                      </Button>
-                    </Link>
                   </div>
                 </div>
                 <p className="text-muted-foreground mb-4">
-                  A brief description of the project, what it does, and the problems it solves.
+                  An adaptive graphics settings system for Godot Engine that automatically adjusts quality settings to maintain target FPS, with threading support and customizable quality presets.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Python</Badge>
-                  <Badge variant="secondary">Django</Badge>
-                  <Badge variant="secondary">PostgreSQL</Badge>
+                  <Badge variant="secondary">Godot Engine</Badge>
+                  <Badge variant="secondary">GDScript</Badge>
+                  <Badge variant="secondary">Game Development</Badge>
+                  <Badge variant="secondary">Performance Optimization</Badge>
                 </div>
               </CardContent>
             </Card>
