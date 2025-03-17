@@ -2,8 +2,6 @@
 
 A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a Full Stack Developer specializing in Java and React.
 
-![Portfolio Screenshot](https://via.placeholder.com/800x400?text=Portfolio+Screenshot)
-
 ## Overview
 
 This portfolio website serves as a comprehensive showcase of my professional journey, technical expertise, and project portfolio. It features a clean, responsive design with dark/light mode support and interactive elements to provide visitors with an engaging experience.
