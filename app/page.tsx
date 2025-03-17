@@ -110,6 +110,23 @@ export default function Home() {
             "sameAs": [
               "https://github.com/lucasbecker-dev",
               "https://www.linkedin.com/in/lucasbecker-dev/"
+            ],
+            "knowsAbout": [
+              {
+                "@type": "Thing",
+                "name": "Java Development",
+                "description": "Expert in Java, Spring Boot, Maven, Hibernate and MySQL"
+              },
+              {
+                "@type": "Thing",
+                "name": "Frontend Development",
+                "description": "Proficient in React, TypeScript, and Tailwind CSS"
+              },
+              {
+                "@type": "Thing",
+                "name": "Game Development",
+                "description": "Experience with Godot Engine and GDScript"
+              }
             ]
           })
         }}
@@ -257,7 +274,7 @@ export default function Home() {
           </div>
           <div className="flex-1 flex justify-center md:justify-end">
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20">
-              <Image src="pfp2.png?height=320&width=320" alt="Profile" fill className="object-cover" priority />
+              <Image src="pfp2.png?height=320&width=320" alt="Lucas Becker - Software Engineer profile photo" fill className="object-cover" priority />
             </div>
           </div>
         </section>
@@ -388,51 +405,46 @@ export default function Home() {
             </Card>
 
             {/* Project 2 */}
-            {/* <Card className="overflow-hidden group hover:shadow-md hover:shadow-primary/10 transition-shadow">
+            <Card className="overflow-hidden group hover:shadow-md hover:shadow-primary/10 transition-shadow">
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Project 2"
+                  src="/sstb.png"
+                  alt="Start Small Think Big Website"
                   fill
                   className="object-cover transition-transform group-hover:scale-105"
                 />
               </div>
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold">Project Name</h3>
+                  <h3 className="text-xl font-bold">Start Small Think Big</h3>
                   <div className="flex gap-2">
-                    <Link href="https://github.com/yourusername/project2" target="_blank" rel="noopener noreferrer">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-foreground hover:text-primary hover:bg-primary/10"
-                      >
-                        <Github className="h-4 w-4" />
-                        <span className="sr-only">GitHub</span>
-                      </Button>
-                    </Link>
-                    <Link href="https://project2-demo.com" target="_blank" rel="noopener noreferrer">
+                    <div className="flex items-center text-xs text-muted-foreground mr-2">
+                      <Lock className="h-3 w-3 mr-1" />
+                      Private Code
+                    </div>
+                    <Link href="https://www.startsmallthinkbig.org/" target="_blank" rel="noopener noreferrer">
                       <Button
                         variant="ghost"
                         size="icon"
                         className="h-8 w-8 text-foreground hover:text-primary hover:bg-primary/10"
                       >
                         <ExternalLink className="h-4 w-4" />
-                        <span className="sr-only">Live Demo</span>
+                        <span className="sr-only">Live Website</span>
                       </Button>
                     </Link>
                   </div>
                 </div>
                 <p className="text-muted-foreground mb-4">
-                  A brief description of the project, what it does, and the problems it solves.
+                  A responsive web app for a non-profit organization that connects small business owners with volunteer professionals for legal, financial, and marketing assistance.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">TypeScript</Badge>
+                  <Badge variant="secondary">JavaScript</Badge>
+                  <Badge variant="secondary">React</Badge>
                   <Badge variant="secondary">Next.js</Badge>
-                  <Badge variant="secondary">Prisma</Badge>
+                  <Badge variant="secondary">Salesforce</Badge>
                 </div>
               </CardContent>
-            </Card> */}
+            </Card>
 
             {/* Project 3 - Godot Smart Graphics Settings */}
             <Card className="overflow-hidden group hover:shadow-md hover:shadow-primary/10 transition-shadow">
@@ -565,6 +577,15 @@ export default function Home() {
                   <Badge>Salesforce</Badge>
                   <Badge>Figma</Badge>
                   <Badge>Project Management</Badge>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="hover:shadow-md hover:shadow-primary/10 transition-shadow">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold mb-4">Game Development</h3>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>Godot Engine</Badge>
+                  <Badge>GDScript</Badge>
                 </div>
               </CardContent>
             </Card>

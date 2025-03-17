@@ -10,7 +10,6 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Lucas Becker | Full Stack Java & React Developer | Software Engineer",
   description: "Portfolio of Lucas Becker, a Software Engineer specializing in Java, Spring Boot, React, TypeScript, and full-stack web development. Experienced in building scalable applications and teaching coding skills.",
-  generator: 'v0.dev',
   keywords: [
     "Lucas Becker",
     "Software Engineer",
@@ -31,7 +30,10 @@ export const metadata: Metadata = {
     "Coding Instructor",
     "Project Management",
     "Software Development",
-    "UI/UX Design"
+    "UI/UX Design",
+    "Game Development",
+    "Godot Engine",
+    "GDScript"
   ],
   authors: [
     {
@@ -72,6 +74,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-site-verification" content="your-verification-code" />
         <link rel="canonical" href="https://lucasbecker-dev.github.io" />
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
