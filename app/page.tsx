@@ -388,7 +388,7 @@ export default function Home() {
             </Card>
 
             {/* Project 2 */}
-            <Card className="overflow-hidden group hover:shadow-md hover:shadow-primary/10 transition-shadow">
+            {/* <Card className="overflow-hidden group hover:shadow-md hover:shadow-primary/10 transition-shadow">
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
                   src="/placeholder.svg?height=400&width=600"
@@ -432,7 +432,7 @@ export default function Home() {
                   <Badge variant="secondary">Prisma</Badge>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Project 3 - Godot Smart Graphics Settings */}
             <Card className="overflow-hidden group hover:shadow-md hover:shadow-primary/10 transition-shadow">
