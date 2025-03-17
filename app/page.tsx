@@ -458,6 +458,16 @@ export default function Home() {
                         <span className="sr-only">GitHub</span>
                       </Button>
                     </Link>
+                    <Link href="https://godotengine.org/asset-library/asset/3814" target="_blank" rel="noopener noreferrer">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-foreground hover:text-primary hover:bg-primary/10"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        <span className="sr-only">Asset Library</span>
+                      </Button>
+                    </Link>
                   </div>
                 </div>
                 <p className="text-muted-foreground mb-4">
